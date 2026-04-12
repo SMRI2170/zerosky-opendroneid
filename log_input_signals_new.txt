@@ -1,0 +1,8 @@
+drone_lat_e7_norm 1 0
+drone_lon_e7_norm 1 0
+drone_alt_cm 1 0
+drone_time_sec 1 0
+target_lat_e7_norm 1 0
+target_lon_e7_norm 1 0
+target_alt_cm 1 0
+target_time_sec 1 0

@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "model_asset": "assets/models/uav_yolo11n_uav.tflite",
+  "labels_asset": "assets/models/coco_labels.txt",
+  "score_threshold": 0.30,
+  "iou_threshold": 0.45,
+  "uses_objectness": false,
+  "notes": "Initialized with the sample YOLOv8 TFLite model from kobesoft-inc/yolov8_flutter_example. Replace with a UAV-specific model later if needed."
+}

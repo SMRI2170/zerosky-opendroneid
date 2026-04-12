@@ -1,0 +1,9 @@
+{
+  "enabled": false,
+  "model_asset": "assets/models/uav_visdrone_finetuned.tflite",
+  "labels_asset": "assets/models/uav_visdrone_finetuned_labels.txt",
+  "score_threshold": 0.25,
+  "iou_threshold": 0.45,
+  "uses_objectness": false,
+  "notes": "Use this profile for a UAV detector fine-tuned from VisDrone-pretrained weights."
+}

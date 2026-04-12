@@ -1,0 +1,8 @@
+drone
+quadcopter
+uav
+airplane
+aircraft
+helicopter
+aerospace engineering
+bird

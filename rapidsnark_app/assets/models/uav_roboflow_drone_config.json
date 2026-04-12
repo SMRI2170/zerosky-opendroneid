@@ -1,0 +1,9 @@
+{
+  "enabled": false,
+  "model_asset": "assets/models/uav_roboflow_drone.tflite",
+  "labels_asset": "assets/models/uav_roboflow_drone_labels.txt",
+  "score_threshold": 0.25,
+  "iou_threshold": 0.45,
+  "uses_objectness": false,
+  "notes": "Profile for Roboflow Universe 'Drone Detection TFLITE'. Place the exported TFLite file at assets/models/uav_roboflow_drone.tflite and set enabled=true."
+}

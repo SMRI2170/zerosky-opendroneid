@@ -1,0 +1,69 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.venv/
+.venv_visdrone/
+.venv_visdrone311/
+
+# Node
+node_modules/
+
+# General build outputs
+build/
+dist/
+tmp/
+.cache/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+android/.gradle/
+android/.kotlin/
+ios/Flutter/ephemeral/
+ios/Pods/
+macos/Pods/
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
+
+# Project-local generated directories
+barometric_pressure_sensor_app/build/
+barometric_pressure_sensor_app/.dart_tool/
+rapidsnark_app/build/
+rapidsnark_app/.dart_tool/
+rapidsnark_app/android/.gradle/
+rapidsnark_app/android/.kotlin/
+runs/
+
+# Local clones / backups / datasets
+flutter-rapidsnark/
+backups/*.tar.gz
+backups/
+visdrone/raw/
+visdrone/visdrone_yolo/
+
+# ZK generated artifacts that are large or reproducible
+zk-distance/build/pot*.ptau
+zk-distance/build/*.zkey
+zk-distance/build/*.wtns
+zk-distance/build/*.proof.json
+zk-distance/build/*.public.json
+zk-distance/build/distance_30m_time.r1cs
+zk-distance/build/distance_30m_time.sym
+zk-distance/build/distance_30m_time_js/
+
+# Optimization comparison generated files
+zk-distance/optimization-compare/O0/
+zk-distance/optimization-compare/O1/
+zk-distance/optimization-compare/O2/

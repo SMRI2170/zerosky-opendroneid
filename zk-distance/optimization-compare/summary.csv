@@ -1,0 +1,4 @@
+optimization,constraints,wires,private_inputs,public_inputs,public_outputs,labels,r1cs_bytes,wasm_bytes,sym_bytes,substitutions
+O0,609,608,8,0,3,608,95444,47068,23989,0
+O1,574,573,8,0,3,608,92152,46928,23954,35
+O2,534,533,8,0,3,608,106472,46768,23914,75
