@@ -45,6 +45,7 @@ dependencies:
   path_provider: ^2.1.5
   sensors_plus: ^7.0.0
   tflite_flutter: ^0.11.0
+  
   video_thumbnail: ^0.5.6
 
 dev_dependencies:
@@ -63,4 +64,8 @@ flutter:
     - assets/distance30_groth16.zkey
     - assets/distance30.wcd
     - assets/distance30_verification_key.json
+    - assets/circuits/distance30_detection_commitment/
+    - assets/circuits/distance30_detection_flag/
+    - assets/circuits/distance30_feature_classifier/
+    - assets/circuits/distance30_time_series/
     - assets/models/

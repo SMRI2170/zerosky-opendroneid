@@ -1,0 +1,24 @@
+{
+  "name": "m1",
+  "version": "1.0.0",
+  "description": "ドローンの位置情報と利用者の端末センサー情報を使って、`30m以内かつ5秒以内の接近` をゼロ知識証明で示すデモプロジェクトです。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SMRI2170/zkp-m1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SMRI2170/zkp-m1/issues"
+  },
+  "homepage": "https://github.com/SMRI2170/zkp-m1#readme",
+  "dependencies": {
+    "circomlib": "^2.0.5"
+  }
+}

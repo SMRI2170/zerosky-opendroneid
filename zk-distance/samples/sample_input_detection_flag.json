@@ -1,0 +1,13 @@
+{
+  "drone_lat_e7_norm": "1256891390",
+  "drone_lon_e7_norm": "3196917000",
+  "drone_alt_cm": "1200",
+  "drone_time_sec": "1711447200",
+  "target_lat_e7_norm": "1256891590",
+  "target_lon_e7_norm": "3196917180",
+  "target_alt_cm": "1000",
+  "target_time_sec": "1711447203",
+  "uav_detected": "1",
+  "detection_score_bps": "8300",
+  "detection_class_id": "1"
+}

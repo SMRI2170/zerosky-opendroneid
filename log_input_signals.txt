@@ -6,3 +6,10 @@ main.target_lat_e7_norm 1
 main.target_lon_e7_norm 1
 main.target_alt_cm 1
 main.target_time_sec 1
+main.uav_detected 1
+main.detection_score_bps 1
+main.detection_class_id 1
+main.frame_time_sec 1
+main.frame_commitment_hi 1
+main.frame_commitment_lo 1
+main.commitment_present 1

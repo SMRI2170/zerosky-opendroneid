@@ -1,0 +1,5 @@
+circuit,profile,non_linear_constraints,linear_constraints,private_inputs,public_outputs,wires,labels
+distance_30m_time,base,534,40,8,3,573,608
+distance_30m_time_detection_flag,detection_flag,573,51,11,7,622,680
+distance_30m_time_detection_commitment,detection_commitment,1034,77,15,8,1104,1184
+distance_30m_time_feature_classifier,feature_classifier,766,56,13,7,822,883

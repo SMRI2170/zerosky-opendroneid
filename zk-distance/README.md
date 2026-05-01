@@ -14,6 +14,33 @@
   - 3次元距離が `30m` 以下
   - 時刻差が `5秒` 以下
 
+## 追加した回路バリエーション
+
+`circuits/` には、距離・時刻の基本回路に加えて、UAV 検知の扱いを比較するための派生回路を追加している。
+
+- `distance_30m_time.circom`
+  - 距離と時刻だけを見る最小構成
+- `distance_30m_time_detection_flag.circom`
+  - `uav_detected`, `detection_score_bps`, `detection_class_id` を追加
+  - 検知フラグだけを回路へ載せる軽量案
+- `distance_30m_time_detection_commitment.circom`
+  - 検知フラグに加えて `frame_time_sec` とフレーム commitment の存在を追加
+  - 検知結果と証拠フレームの結びつきを少し強める案
+- `distance_30m_time_feature_classifier.circom`
+  - 画像そのものではなく、外部で抽出した 4 次元特徴量を小さな線形分類器で判定
+  - フル YOLO を回路化する前の中間案
+
+サンプル入力は `zk-distance/samples/` に置いている。
+
+### バリエーション用スクリプト
+
+- `scripts/build_distance_detection_flag_assets.sh`
+- `scripts/build_distance_detection_commitment_assets.sh`
+- `scripts/build_distance_feature_classifier_assets.sh`
+- `scripts/compare_distance_variant_constraints.sh`
+
+最後のスクリプトを実行すると、`zk-distance/constraint-compare/summary.csv` に回路ごとの制約数比較を出力できる。
+
 ## 近似モデル
 
 回路では球面距離ではなく、都市部の近距離判定向けに固定係数の平面近似を使います。
@@ -117,15 +144,16 @@ BLE 広告の manufacturer data には次の内容を入れています。
 
 ### スマホ側
 
-`rapidsnark_app` では次の操作で UAV 配信を受信します。
+`rapidsnark_app` では `収集` タブから次の流れで進めます。
 
-1. `UAV BLE 受信` カードの `UAV広告を受信して入力` を押す
-2. ドローン側ログに `lat/lon/alt/time` が自動反映される
-3. 住民端末側は `第三者側検知ログをGPS/気圧センサーで入力` で自分の測位を取得する
-4. `UAV受信後に動画撮影` を押すと、BLE 受信後にアプリのカメラが起動する
-5. 撮影した動画の開始時刻を `第三者側検知ログ` の時刻として採用する
-6. アプリが動画から複数フレームを切り出し、`google_mlkit_image_labeling` で UAV 候補を自動解析する
-7. `動画検知で証明実行` または `動画検知済みなら Generate And Verify Proof` を押す
+1. ドローン側入力モードを `手入力` または `Raspberry Pi` から選ぶ
+2. `Raspberry Pi` モードなら `Raspberry Pi から受信` を押して BLE 広告を受信する
+3. 受信した `lat/lon/alt/time` はドローン側ログへ自動反映される
+4. 利用者側は `この端末の値を使う` で GPS と気圧センサーを取得する
+5. `BLE受信から撮影まで進む` または `端末情報を取得して撮影` を押す
+6. 撮影した動画の開始時刻を利用者側ログの時刻として採用する
+7. アプリが動画から複数フレームを切り出し、UAV 候補を自動解析する
+8. `動画検知で証明実行` または `証明` タブから `Generate And Verify Proof` を押す
 
 必要な権限:
 
@@ -137,7 +165,7 @@ BLE 広告の manufacturer data には次の内容を入れています。
 このアプリでは、単に BLE テレメトリを受信して証明するのではなく、次の証拠フローを想定している。
 
 1. UAV が BLE で自身の位置・高度・時刻を配信する
-2. スマホがそれを受信し、ドローン側ログとして保持する
+2. スマホは `手入力` または BLE 受信でドローン側ログを準備する
 3. スマホ自身の GPS / 気圧センサー値を第三者側ログとして取得する
 4. アプリのカメラで UAV の映像を動画として記録する
 5. 動画の開始時刻を第三者側検知ログの時刻として使う

@@ -6,3 +6,10 @@ target_lat_e7_norm 1 0
 target_lon_e7_norm 1 0
 target_alt_cm 1 0
 target_time_sec 1 0
+uav_detected 1 0
+detection_score_bps 1 0
+detection_class_id 1 0
+frame_time_sec 1 0
+frame_commitment_hi 1 0
+frame_commitment_lo 1 0
+commitment_present 1 0
