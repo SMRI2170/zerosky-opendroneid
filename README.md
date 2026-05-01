@@ -1,6 +1,6 @@
 *Read this in other languages: [English](README.en.md), [日本語](README.md).*
 
-# zk-UAV-Proximity-Proof (旧: zkp-m1)
+# zk-UAV-Proximity-Proof
 
 ドローンの位置情報と利用者の端末センサー情報を使って、`30m以内かつ5秒以内の接近` をゼロ知識証明で示すデモプロジェクトです。
 
