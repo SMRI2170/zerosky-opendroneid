@@ -97,7 +97,7 @@
 ```bash
 ./scripts/build_distance_assets.sh
 ```
-```
+
 このスクリプトは次を行います。
  * Circom 回路を O2 でコンパイル
  * Powers of Tau と Groth16 セットアップ
@@ -110,8 +110,8 @@ git clone [https://github.com/iden3/circom-witnesscalc.git](https://github.com/i
 cd /tmp/circom-witnesscalc
 cargo build --release -p build-circuit
 BUILD_CIRCUIT_BIN=/tmp/circom-witnesscalc/target/release/build-circuit ./scripts/build_distance_assets.sh
-
 ```
+
 ## 2. Raspberry Pi 側を起動する
 Raspberry Pi 側では remote_id.py が BLE 広告を送ります。
 固定値を送る例:
