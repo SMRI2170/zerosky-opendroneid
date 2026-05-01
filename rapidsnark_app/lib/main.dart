@@ -19,6 +19,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:video_thumbnail/video_thumbnail.dart' as video_thumbnail;
 
+import 'drone_detection/drone_camera_page.dart';
 import 'uav_yolo_detector.dart';
 
 List<CameraDescription> _availableCameras = [];
@@ -48,7 +49,7 @@ class RapidsnarkApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF3F2EA),
         useMaterial3: true,
       ),
-      home: const SafetyUseCasePage(),
+      home: const DroneCameraPageEntry(), // Changed to real-time detection page
     );
   }
 }

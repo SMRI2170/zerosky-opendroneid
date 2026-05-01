@@ -103,6 +103,39 @@ class UavYoloDetector {
     );
   }
 
+  /// モデルファイルパスとラベルファイルパスを直接指定して生成する。
+  /// JSON 設定ファイルが不要な場合に使用する。
+  static Future<UavYoloDetector?> tryCreateFromPaths({
+    required String modelAsset,
+    required String labelsAsset,
+    double scoreThreshold = 0.35,
+    double iouThreshold = 0.45,
+    bool usesObjectness = false,
+  }) async {
+    final config = UavYoloConfig(
+      enabled: true,
+      modelAsset: modelAsset,
+      labelsAsset: labelsAsset,
+      scoreThreshold: scoreThreshold,
+      iouThreshold: iouThreshold,
+      usesObjectness: usesObjectness,
+    );
+    final labels = await _loadLabels(config.labelsAsset);
+    final interpreter = await Interpreter.fromAsset(
+      config.modelAsset,
+      options: _interpreterOptions(),
+    );
+    final isolateInterpreter = await IsolateInterpreter.create(
+      address: interpreter.address,
+    );
+    return UavYoloDetector._(
+      interpreter: interpreter,
+      isolateInterpreter: isolateInterpreter,
+      config: config,
+      labels: labels,
+    );
+  }
+
   static Future<UavYoloDetector?> tryCreateFromCandidates(
     List<String> configAssets,
   ) async {
@@ -126,7 +159,8 @@ class UavYoloDetector {
   static InterpreterOptions _interpreterOptions() {
     final options = InterpreterOptions()..threads = 2;
     if (Platform.isAndroid) {
-      options.addDelegate(GpuDelegateV2(options: GpuDelegateOptionsV2()));
+      // GPU delegate disabled due to OpenCL/OpenGL transpose shader errors on some devices.
+      // options.addDelegate(GpuDelegateV2(options: GpuDelegateOptionsV2()));
     } else if (Platform.isIOS) {
       options.addDelegate(GpuDelegate(options: GpuDelegateOptions()));
     }

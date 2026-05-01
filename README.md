@@ -1,6 +1,17 @@
-# zkp-m1
+*Read this in other languages: [English](README.en.md), [日本語](README.md).*
+
+# zk-UAV-Proximity-Proof (旧: zkp-m1)
 
 ドローンの位置情報と利用者の端末センサー情報を使って、`30m以内かつ5秒以内の接近` をゼロ知識証明で示すデモプロジェクトです。
+
+<p float="left">
+  <img src="images/tflite-model-drone-detection.jpg" width="300" alt="TFLite Model Drone Detection" />
+  <img src="images/opendroneid-detection-log.jpg" width="300" alt="OpenDroneID Detection Log" />
+  <img src="images/experimental-drone.jpg" width="300" alt="Experimental Drone" />
+  <img src="images/google-ml-kit-drone-detection.jpg" width="300" alt="Google ML Kit Drone Detection" />
+  <img src="images/before-remoteID-detection.jpg" width="300" alt="Before RemoteID Detection" />
+  <img src="images/after-remoteID-detection.jpg" width="300" alt="After RemoteID Detection" />
+</p>
 
 このリポジトリには次の 3 つが入っています。
 
@@ -12,24 +23,28 @@
 
 - `circuits/distance_30m_time.circom`
   - 位置と時刻から `within30`, `distance_ok`, `time_ok` を出力する回路
-- `scripts/build_distance_assets.sh`
-  - 回路のコンパイル、Groth16 セットアップ、アプリ用 asset 更新
-- `scripts/build_distance_detection_flag_assets.sh`
-  - detection flag 回路用 asset を生成
-- `scripts/build_distance_detection_commitment_assets.sh`
-  - detection commitment 回路用 asset を生成
-- `scripts/build_distance_feature_classifier_assets.sh`
-  - feature classifier 回路用 asset を生成
+- `circuits/distance_30m_time_series.circom` 等
+  - 複数時刻の時系列位置情報を扱う回路や、物体検知フラグ、モデル推論結果コミットメント等と組み合わせた拡張回路群
+- `scripts/build_distance_assets.sh` 等
+  - 回路のコンパイル、Groth16 セットアップ、アプリ用 asset 更新を行うスクリプト群（各回路バリエーションに対応）
 - `scripts/compare_circom_optimizations.sh`
   - `--O0 / --O1 / --O2` の比較
 - `scripts/compare_distance_variant_constraints.sh`
   - 回路バリエーションごとの constraint 比較 CSV を生成
+- `scripts/train_visdrone_yolo.sh`, `convert_visdrone_det_to_yolo.py` 等
+  - YOLO モデルの学習、VisDrone フォーマットからの変換、TFLite エクスポートを行う ML 向けスクリプト群
+- `scripts/generate_project_summary_slides.py`
+  - プロジェクト概要をプレゼン用スライド (pptx) として自動生成するスクリプト
 - `zk-distance/sample_input.json`
   - 回路のサンプル入力
 - `rapidsnark_app/lib/main.dart`
-  - デモアプリ本体
+  - デモアプリ本体 (Flutterアプリ、内部でYOLOモデルによるドローン検知を実行)
 - `uav/remote_id.py`
   - Raspberry Pi から BLE manufacturer data を送信
+- `uav/OPENDRONEID_IMPLEMENTATION.md`, `SENSOR_INTEGRATION.md` 等
+  - OpenDroneID (ASTM F3411-22a) の実装詳細や、Raspberry Pi 上での実機センサー (GPS, BME280) 統合に関するドキュメント
+- `visdrone/`
+  - UAV (ドローン) の小物体検知に向けた YOLO 事前学習・ファインチューニング用のデータセット設定ファイル群
 
 ## 必要環境
 
@@ -147,6 +162,8 @@ flutter run
 - 回路は `30m以内` と `5秒以内` を同時に判定
 - アプリ内で witness 計算、Groth16 証明、検証まで完結
 - Raspberry Pi の BLE 広告をアプリで受信可能
+- VisDrone で事前学習・ファインチューニングした YOLO モデルによるドローンのリアルタイム画像認識機能
+- OpenDroneID に準拠した BLE アドバタイズパケットの生成と実機 GPS / 気圧センサーとの連携
 - `--O0 / --O1 / --O2` の比較レポートも含む
 - 回路バリエーション別の constraint 比較 CSV も生成可能
 
@@ -155,3 +172,7 @@ flutter run
 - [zk-distance/README.md](/Users/smri/Downloads/cursor/m1/zk-distance/README.md)
 - [rapidsnark_app/README.md](/Users/smri/Downloads/cursor/m1/rapidsnark_app/README.md)
 - [optimization_report.md](/Users/smri/Downloads/cursor/m1/zk-distance/optimization-compare/optimization_report.md)
+- [visdrone/README.md](/Users/smri/Downloads/cursor/m1/visdrone/README.md)
+- [uav/OPENDRONEID_IMPLEMENTATION.md](/Users/smri/Downloads/cursor/m1/uav/OPENDRONEID_IMPLEMENTATION.md)
+- [uav/OPENDRONEID_COMPLIANCE_LOG.md](/Users/smri/Downloads/cursor/m1/uav/OPENDRONEID_COMPLIANCE_LOG.md)
+- [uav/SENSOR_INTEGRATION.md](/Users/smri/Downloads/cursor/m1/uav/SENSOR_INTEGRATION.md)
